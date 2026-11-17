@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Stonks is a terminal-based stock visualizer and tracker." />
+  <title>Stonks</title>
+  <link rel="icon" href="./assets/stonks.svg" type="image/svg+xml" />
+  <style>
+    :root {
+      color-scheme: dark;
+      --bg: #0d120e;
+      --panel: #151d17;
+      --text: #edf3ee;
+      --muted: #b3c0b6;
+      --accent: #8cff9b;
+      --border: #27342a;
+    }
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: Arial, sans-serif;
+      line-height: 1.6;
+    }
+    .wrap {
+      width: min(1100px, calc(100% - 32px));
+      margin: 0 auto;
+    }
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 24px 0;
+    }
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: bold;
+      text-decoration: none;
+      color: var(--text);
+    }
+    .brand img {
+      width: 48px;
+      height: 48px;
+    }
+    nav {
+      display: flex;
+      gap: 18px;
+      color: var(--muted);
+    }
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+    }
+    nav a:hover {
+      color: var(--accent);
+    }
+    .hero {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 28px;
+      align-items: center;
+      padding: 54px 0 40px;
+    }
+    h1 {
+      margin: 0 0 16px;
+      font-size: clamp(2.6rem, 5vw, 5rem);
+      line-height: 1.05;
+      letter-spacing: -0.04em;
+    }
+    .accent {
+      color: var(--accent);
+    }
+    .lead {
+      font-size: 1.1rem;
+      color: var(--muted);
+      max-width: 620px;
+      margin: 0 0 24px;
+    }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .button {
+      display: inline-block;
+      padding: 12px 20px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      text-decoration: none;
+      font-weight: 700;
+      transition: 0.2s ease;
+    }
+    .button.primary {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #0e180f;
+    }
+    .button.secondary {
+      background: transparent;
+      color: var(--text);
+    }
+    .button:hover {
+      transform: translateY(-1px);
+    }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.18);
+    }
+    pre {
+      margin: 0;
+      white-space: pre-wrap;
+      color: var(--text);
+      font-size: 0.9rem;
+      line-height: 1.8;
+      font-family: "SFMono-Regular", Consolas, monospace;
+    }
+    .prompt {
+      color: var(--accent);
+    }
+    section {
+      padding: 50px 0;
+      border-top: 1px solid var(--border);
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+    .feature {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 22px;
+    }
+    .feature h3 {
+      margin-top: 0;
+      margin-bottom: 10px;
+    }
+    .feature p {
+      margin: 0;
+      color: var(--muted);
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+    .gallery img {
+      display: block;
+      width: 100%;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--panel);
+    }
+    .meta {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+    @media (max-width: 760px) {
+      .hero, .grid, .gallery {
+        grid-template-columns: 1fr;
+      }
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+      }
+      nav {
+        flex-wrap: wrap;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <a class="brand" href="#">
+        <img src="./assets/stonks.svg" alt="Stonks logo" />
+        <span>Stonks</span>
+      </a>
+      <nav>
+        <a href="#features">Features</a>
+        <a href="#screenshots">Screenshots</a>
+        <a href="#install">Install</a>
+        <a href="https://github.com/SeanK-schoolalive/stonks">GitHub</a>
+      </nav>
+    </header>
+
+    <main>
+      <section class="hero">
+        <div>
+          <h1>Your stocks.<br><span class="accent">Your terminal.</span></h1>
+          <p class="lead">
+            Stonks is a terminal-based stock visualizer and tracker that displays realtime prices in graph format, right in your command line.
+          </p>
+          <div class="actions">
+            <a class="button primary" href="#install">Get Started</a>
+            <a class="button secondary" href="https://github.com/SeanK-schoolalive/stonks">View Source</a>
+          </div>
+        </div>
+
+        <div class="card">
+          <pre><span class="prompt">$</span> stonks AMD
+
+<span class="accent">AMD</span>  Advanced Micro Devices
+<span class="accent">$164.21  +2.84%</span>
+
+     170 ┤          ╭─╮
+     160 ┤   ╭─────╯ ╰──╮
+     150 ┤  ╭╯          ╰─
+     140 ┼────────────────
+          9:00  12:00  15:00
+</pre>
+        </div>
+      </section>
+
+      <section id="features">
+        <h2>Features</h2>
+        <div class="grid">
+          <div class="feature">
+            <h3>Terminal charts</h3>
+            <p>Track stock price movement with lightweight, readable console graphs.</p>
+          </div>
+          <div class="feature">
+            <h3>Saved favorites</h3>
+            <p>Save a watchlist and load it anytime with a single command.</p>
+          </div>
+          <div class="feature">
+            <h3>Multiple timeframes</h3>
+            <p>View daily, weekly, yearly, or custom-date snapshots from the same tool.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="screenshots">
+        <h2>Screenshots</h2>
+        <div class="gallery">
+          <img src="./assets/1.png" alt="Stonks saved watchlist screenshot" />
+          <img src="./assets/2.png" alt="Stonks ticker chart screenshot" />
+        </div>
+      </section>
+
+      <section id="install">
+        <h2>Install</h2>
+        <p class="meta">
+          Clone the repo and build it with Go:
+        </p>
+        <pre>git clone https://github.com/SeanK-schoolalive/stonks.git
+cd stonks
+make</pre>
+        <p class="meta">
+          Or install from the GitHub releases page.
+        </p>
+      </section>
+    </main>
+  </div>
+</body>
+</html>
